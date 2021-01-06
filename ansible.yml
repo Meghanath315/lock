@@ -1,0 +1,23 @@
+---
+
+ - host: dev
+   tags: dev
+   tasks:
+   - name: pulling docker image
+     raw: docker pull meghanath315/tuks1:1
+   - name: remove containers
+     raw: docker rm -f c1
+     ignore_errors: true
+   - name: spinnup container
+     raw: docker run -dti --name c1 -p 80:80 meghanath/tuks1:1 /bin/bash
+
+ - host: qa
+   tags: qa
+   tasks:
+   - name: pulling docker image
+     raw: docker pull meghanath315/tuks1:1
+   - name: remove containers
+     raw: docker rm -f c1
+     ignore_errors: true
+   - name: spinnup container
+     raw: docker run -dti --name c1 -p 80:80 meghanath/tuks1:1 /bin/bash
